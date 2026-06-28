@@ -6,3 +6,6 @@ engine.exe
 
 # Ignore all session log text files
 *.txt
+# Ignore Aider AI assistant tracking logs and cache databases
+.aider*
+.cache.db
