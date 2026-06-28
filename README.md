@@ -8,6 +8,7 @@ A lightweight, cross-platform game engine simulation written completely from scr
 * **Simulation Loop:** Engineered a continuous execution loop (`while`) mimicking production game loops to drive real-time gameplay cycles.
 * **Modular Engineering:** Abstracted visualization routines out of the main application flow into custom reusable Functions with distinct parameter signatures.
 * **Dynamic Memory Vectors:** Integrated sequential dynamic containers (`std::vector`) and iterative processing loops to scale the architecture from a single actor to a multi-entity arena ecosystem.
+* **Object-Oriented Blueprints (`struct`):** Modularized scattered primitive data elements into coherent composite types (`struct`), isolating entity attributes (health, damage vectors, naming strings) to enforce clean data encapsulation rules.
 
 
 ## 🛠️ Compilation & Execution Guides
