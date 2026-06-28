@@ -12,6 +12,7 @@ A lightweight, cross-platform game engine simulation written completely from scr
 * **Multi-File Header Architecture:** Separated the monolithic code infrastructure into a professional decoupled layout (`.h` interface declarations and `.cpp` operational implementations) to optimize modular build compilation tracking.
 * **Memory Pointers (`*` / `->`):** Implemented dynamic runtime hardware addressing layouts utilizing explicit memory pointers (`Monster*`) and pointer member access selectors (`->`) to orchestrate live target tracking without duplicating application data structures in cache layers.
 * **Pseudo-Random Number Generation (`<random>`):** Scaled combat logic matrices to execute non-deterministic, dynamic damage calculations by wrapping hardware seed noise inside Mersenne Twister engines (`std::mt19937`).
+* **Resource Matrix Modification:** Scaled combat subsystems to calculate active inventory conditional item modifiers (Weapon attack bonuses) and integrated secondary resource tracks (Mana pools) to handle multi-parameter skill/spell casts.
 
 
 

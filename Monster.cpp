@@ -2,11 +2,11 @@
 #include "Monster.h"
 #include <iostream>
 
-void printStatusReport(int playerHp, const std::vector<Monster>& horde, const Monster* target, const std::vector<std::string>& inventory) {
+void printStatusReport(int playerHp, const SkillBook& magic, const std::vector<Monster>& horde, const Monster* target, const std::vector<std::string>& inventory) {
     std::cout << "\n--------------------------------------" << std::endl;
     std::cout << "💖 PLAYER HP: " << playerHp << " HP" << std::endl;
+    printManaBar(magic); // Call our inline skill book renderer
     
-    // Print player's backpack
     std::cout << "🎒 INVENTORY: ";
     if (inventory.empty()) {
         std::cout << "[Empty]";
@@ -27,5 +27,5 @@ void printStatusReport(int playerHp, const std::vector<Monster>& horde, const Mo
         if (horde[i].health <= 0) std::cout << " 💀 (FALLEN)";
         std::cout << std::endl;
     }
-    std::cout << "\nEnter Target (1-3), 'u' to Use Potion, or '0' to Quit: ";
+    std::cout << "\nEnter Command (1-3 to Attack, 'f' for Fireball, 'u' for Potion, '0' to Quit): ";
 }
