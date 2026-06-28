@@ -2,26 +2,27 @@
 
 int main() {
     int playerHealth = 100;
+    int roundCounter = 1;
 
-    std::cout << "--- ENEMY ENGAGEMENT ---" << std::endl;
-    std::cout << "Starting Player Health: " << playerHealth << std::endl;
+    std::cout << "===ARENA SIMULATOR INITIALING ===" << std::endl;
 
-    // 1. SIMULATION: A massive boss monster hits the player for 120 damage!
-    std::cout << "\n[COMBAT] Boss uses Flame Breath! You take 120 damage!" << std::endl;
-    playerHealth -= 120; 
+    // The loop keeps running as long as playerhealth is greater than 0
+    while (playerHealth > 0) {
+        std::cout << "\n---ROUND " << roundCounter << " ---" << std::endl;
+        std::cout << "Player Health: " << playerHealth << std::endl;
 
-    std::cout << "Current Player Health: " << playerHealth << std::endl;
+        // Simulation: Enemy strikes for 25 damage each round
+        std::cout << "[COMBAT] Enemy slashes player for 25 damage!" << std::endl;
+        playerHealth -= 25;
 
-    // 2. THE ENGINE DECISION TREE
-    // '<=' means 'less than or equal to'
-    if (playerHealth <= 0) {
-        std::cout << "\n[ENGINE] WARNING: Player health depleted!" << std::endl;
-        std::cout << "💀 GAME OVER: Your character has perished. 💀" << std::endl;
-    } 
-    else {
-        std::cout << "\n[ENGINE] STATUS: Player survived the attack!" << std::endl;
-        std::cout << "🛡️ Keep fighting! 🛡️" << std::endl;
+        // Increment our round counter by 1 so we track time
+        roundCounter += 1;
+    }
+    
+    // Once playerHealth hits 0 or less, the loop breaks and code continues here:
+    std::cout << "\n==================================" << std::endl;
+    std::cout << "💀 playerHealth hit " << playerHealth << "! LOOP BROKEN. GAME OVER. 💀" << std::endl;
+    
+    return 0;
     }
 
-    return 0;
-}
