@@ -1,46 +1,58 @@
 #include <iostream>
+#include <vector> // Imports the dynamic array module
 
-// 1. CREATING OUR FIRST FUNCTION
-// This function takes our player's health as an input parameter and displays a clean banner
-void printStatusReport(int health) {
+void printStatusReport(int health, const std::vector<int>& monsters) {
     std::cout << "\n--------------------------------------" << std::endl;
-    std::cout << "💖 ENGINE HP MONITOR: " << health << " HP" << std::endl;
+    std::cout << "💖 PLAYER HP: " << health << " HP" << std::endl;
     
-    // The function can even run its own internal decision logic!
-    if (health < 40) {
-        std::cout << "⚠️ WARNING: Player health is dangerously low! ⚠️" << std::endl;
+    std::cout << "👾 ENEMIES IN ARENA: " << std::endl;
+    // A 'for' loop that automatically iterates through our entire vector array
+    for (int i = 0; i < monsters.size(); i++) {
+        std::cout << "   -> Enemy [" << i + 1 << "]: " << monsters[i] << " HP";
+        if (monsters[i] <= 0) {
+            std::cout << " 💀 (DEFEATED)";
+        }
+        std::cout << std::endl;
     }
     
-    std::cout << "Enter Action (a = Attack, d = Defend, q = Quit): ";
+    std::cout << "\nEnter Action (a = Attack Target 1, d = Defend, q = Quit): ";
 }
 
-// 2. THE CENTRAL ENGINE HUB
 int main() {
     int playerHealth = 100;
     char userChoice = ' ';
 
-    std::cout << "=== MODULAR GAME ENGINE BOOTED ===" << std::endl;
+    // CREATING A VECTOR ARRAY
+    // This instantiates a list containing 3 enemies with 50, 30, and 80 health points
+    std::vector<int> arenaMonsters = {50, 30, 80};
+
+    std::cout << "=== MULTI-ENTITY ENGAGEMENT ENGINE BOOTED ===" << std::endl;
 
     while (playerHealth > 0 && userChoice != 'q') {
         
-        // CALLING OUR CUSTOM FUNCTION HERE
-        // We pass 'playerHealth' into the function so it knows what number to print
-        printStatusReport(playerHealth);
-        
+        printStatusReport(playerHealth, arenaMonsters);
         std::cin >> userChoice;
 
         if (userChoice == 'a') {
-            std::cout << "[COMBAT] You slash! Enemy counter-attacks for 25 damage!" << std::endl;
-            playerHealth -= 25;
+            // Target the first enemy in our vector list (index 0 is the 1st slot!)
+            if (arenaMonsters[0] > 0) {
+                std::cout << "[COMBAT] You strike Enemy 1 for 25 damage!" << std::endl;
+                arenaMonsters[0] -= 25;
+            } else {
+                std::cout << "[COMBAT] You slash wildly at thin air! Enemy 1 is already dead!" << std::endl;
+            }
+            
+            std::cout << "[COMBAT] The remaining horde retaliates! You take 15 damage." << std::endl;
+            playerHealth -= 15;
         } 
         else if (userChoice == 'd') {
-            std::cout << "[COMBAT] Shield raised! Safe from harm." << std::endl;
+            std::cout << "[COMBAT] Shield braced! You successfully mitigate incoming mob damage." << std::endl;
         } 
         else if (userChoice == 'q') {
-            std::cout << "[ENGINE] Exit flag captured." << std::endl;
+            std::cout << "[ENGINE] Initiating system teardown sequence." << std::endl;
         } 
         else {
-            std::cout << "[ERROR] Wrong key! Mistake costs you 5 health." << std::endl;
+            std::cout << "[ERROR] Input mismatch. You take 5 attrition damage." << std::endl;
             playerHealth -= 5;
         }
     }
@@ -49,7 +61,7 @@ int main() {
     if (playerHealth <= 0) {
         std::cout << "💀 playerHealth depleted. GAME OVER. 💀" << std::endl;
     } else {
-        std::cout << "👋 Engine safely shut down. Goodbye! 👋" << std::endl;
+        std::cout << "👋 Sandbox execution terminated successfully. 👋" << std::endl;
     }
 
     return 0;
