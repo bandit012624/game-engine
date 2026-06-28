@@ -1,18 +1,27 @@
 #include <iostream>
 
 int main() {
-    // 1. Creating (Declaring) our storage boxes
     int playerHealth = 100;
-    float playerX = 12.5f; // The 'f' tells C++ this is a float number
-    char playerIcon = 'P';
-    bool isAlive = true;
 
-    // 2. Outputting the data from memory to the screen
-    std::cout << "--- ENGINE RAM REPORT ---" << std::endl;
-    std::cout << "Player Health: " << playerHealth << std::endl;
-    std::cout << "Player Location X: " << playerX << std::endl;
-    std::cout << "Player Visual Icon: " << playerIcon << std::endl;
-    std::cout << "Is Player Alive? (1=True, 0=False): " << isAlive << std::endl;
+    std::cout << "--- ENEMY ENGAGEMENT ---" << std::endl;
+    std::cout << "Starting Player Health: " << playerHealth << std::endl;
+
+    // 1. SIMULATION: A massive boss monster hits the player for 120 damage!
+    std::cout << "\n[COMBAT] Boss uses Flame Breath! You take 120 damage!" << std::endl;
+    playerHealth -= 120; 
+
+    std::cout << "Current Player Health: " << playerHealth << std::endl;
+
+    // 2. THE ENGINE DECISION TREE
+    // '<=' means 'less than or equal to'
+    if (playerHealth <= 0) {
+        std::cout << "\n[ENGINE] WARNING: Player health depleted!" << std::endl;
+        std::cout << "💀 GAME OVER: Your character has perished. 💀" << std::endl;
+    } 
+    else {
+        std::cout << "\n[ENGINE] STATUS: Player survived the attack!" << std::endl;
+        std::cout << "🛡️ Keep fighting! 🛡️" << std::endl;
+    }
 
     return 0;
 }
