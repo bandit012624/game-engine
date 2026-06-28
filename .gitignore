@@ -1,0 +1,5 @@
+# Ignore the compiled Linux binary file
+engine
+
+# Ignore the compiled Windows executable file
+engine.exe
