@@ -19,29 +19,30 @@ A lightweight, cross-platform game engine simulation written completely from scr
 
 ## 🛠️ Compilation & Execution Guides
 
-Because this engine utilizes native standard C++, it can be cross-compiled natively across multiple operating systems.
+Because this engine utilizes a modular, multi-file architecture, you must pass all source implementation files (`.cpp`) to the compiler simultaneously so it can link your object dependencies correctly.
 
 ### 🐧 Linux (Fedora 44 / Red Hat Enterprise Environment)
-Open your terminal and ensure you have the `gcc-c++` compiler installed via your package manager.
+Open your terminal and ensure you have the `gcc-c++` compiler group tools installed via your package manager.
 
 ```bash
-# Compile human-readable source code into a native binary engine
-g++ main.cpp -o engine
+# Compile all source engine components into a single linked native binary
+g++ main.cpp Monster.cpp -o engine
 
-# Execute the simulation engine
+# Execute the simulation engine sandbox
 ./engine
 ```
 
 ### 🪟 Windows 11
-Open your Command Prompt (`cmd`) ensuring your environmental variables map to your C++ compiler binaries.
+Open your Command Prompt (`cmd`) ensuring your system environmental variables map directly to your MinGW/GCC C++ binary pathways.
 
 ```cmd
-# Compile the application into an executable image file
-g++ main.cpp -o engine.exe
+# Compile and link all engine components into a standalone executable image file
+g++ main.cpp Monster.cpp -o engine.exe
 
-# Execute the standalone application
+# Execute the standalone application window
 engine.exe
 ```
+
 
 ## 📈 Developmental Methodology
 
