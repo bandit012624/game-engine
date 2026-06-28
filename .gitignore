@@ -3,3 +3,6 @@ engine
 
 # Ignore the compiled Windows executable file
 engine.exe
+
+# Ignore all session log text files
+*.txt
