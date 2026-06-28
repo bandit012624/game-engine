@@ -1,6 +1,7 @@
 // main.cpp
 #include <iostream>
 #include <vector>
+#include <random> // Crucial: Imports the modern random number engines
 #include "Monster.h"
 
 int main() {
@@ -8,18 +9,22 @@ int main() {
     int targetChoice = -1;
 
     std::vector<Monster> arenaHorde = {
-        {"Goblin Scout", 40, 10, 'G'},
-        {"Orc Warrior", 75, 20, 'O'},
-        {"Cave Troll", 150, 35, 'T'}
+        {"Goblin Scout", 40, 12, 'G'}, // Max damage 12
+        {"Orc Warrior", 75, 22, 'O'},  // Max damage 22
+        {"Cave Troll", 150, 40, 'T'}   // Max damage 40
     };
 
-    // POINTER DECLARATION: Create an empty pointer pointing to no memory location
     Monster* activeTarget = nullptr;
 
-    std::cout << "=== MEMORY POINTER TARGETING CORE ONLINE ===" << std::endl;
+    // --- RANDOM NUMBER GENERATOR SETUP ---
+    // 1. Create a random device seed (gathers random noise from your hardware)
+    std::random_device seed;
+    // 2. Initialize the high-performance Mersenne Twister calculation engine
+    std::mt19937 generator(seed());
+
+    std::cout << "=== CORE ENGINE MODULES LINKED SUCCESSFULLY ===" << std::endl;
 
     while (playerHealth > 0 && targetChoice != 0) {
-        // Pass our activeTarget pointer into our status renderer function
         printStatusReport(playerHealth, arenaHorde, activeTarget);
         std::cin >> targetChoice;
 
@@ -27,17 +32,31 @@ int main() {
 
         int index = targetChoice - 1;
         if (index >= 0 && index < arenaHorde.size()) {
-            // POINTER ASSIGNMENT: Lock our pointer onto the exact memory address of the chosen monster
             activeTarget = &arenaHorde[index];
             
-            std::cout << "\n[ENGINE] Target locked onto memory address: " << activeTarget << std::endl;
-            
-            // POINTER ACCESS: To read data through a pointer, we use the arrow '->' operator
             if (activeTarget->health > 0) {
-                std::cout << "[COMBAT] Attacking " << activeTarget->name << " through pointer link!" << std::endl;
-                activeTarget->health -= 20;
+                // 3. DEFINE PLAYER DAMAGE RANGE (Roll anywhere from 15 to 35 damage)
+                std::uniform_int_distribution<int> playerRoll(15, 35);
+                int calculatedPlayerDmg = playerRoll(generator);
+
+                std::cout << "\n[COMBAT] You slash the " << activeTarget->name 
+                          << " for " << calculatedPlayerDmg << " damage!" << std::endl;
+                activeTarget->health -= calculatedPlayerDmg;
+
+                if (activeTarget->health > 0) {
+                    // 4. DEFINE MONSTER DAMAGE RANGE (Roll from 1 up to their unique max attribute value)
+                    std::uniform_int_distribution<int> monsterRoll(5, activeTarget->damage);
+                    int calculatedMonsterDmg = monsterRoll(generator);
+
+                    std::cout << "[COMBAT] The " << activeTarget->name << " counter-attacks you for " 
+                              << calculatedMonsterDmg << " damage!" << std::endl;
+                    playerHealth -= calculatedMonsterDmg;
+                } else {
+                    std::cout << "[COMBAT] " << activeTarget->name << " collapses into dust!" << std::endl;
+                    activeTarget = nullptr; // Clear targeting pointer on death
+                }
             } else {
-                std::cout << "[COMBAT] Targeted object contains zero health." << std::endl;
+                std::cout << "\n[COMBAT] Targeted entity is already dead." << std::endl;
             }
         } else {
             std::cout << "\n[ERROR] Targeting coordinate out of bounds." << std::endl;

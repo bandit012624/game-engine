@@ -8,7 +8,7 @@
 struct Monster {
     std::string name;
     int health;
-    int damage;
+    int damage; // This is now their MAXIMUM possible damage
     char symbol;
 };
 
