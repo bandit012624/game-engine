@@ -6,6 +6,9 @@ A lightweight, cross-platform game engine simulation written completely from scr
 * **Data Layer:** Implemented strongly-typed primitive variables to track entity states in local memory.
 * **Control Flow:** Integrated relational conditional logic trees to automatically evaluate entity lifecycle changes.
 * **Simulation Loop:** Engineered a continuous execution loop (`while`) mimicking production game loops to drive real-time gameplay cycles.
+* **Modular Engineering:** Abstracted visualization routines out of the main application flow into custom reusable Functions with distinct parameter signatures.
+* **Dynamic Memory Vectors:** Integrated sequential dynamic containers (`std::vector`) and iterative processing loops to scale the architecture from a single actor to a multi-entity arena ecosystem.
+
 
 ## 🛠️ Compilation & Execution Guides
 
