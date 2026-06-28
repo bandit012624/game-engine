@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 
-// The Blueprint definition
 struct Monster {
     std::string name;
     int health;
@@ -13,7 +12,6 @@ struct Monster {
     char symbol;
 };
 
-// Declaring our function interface so main.cpp knows it exists
-void printStatusReport(int playerHp, const std::vector<Monster>& horde);
+void printStatusReport(int playerHp, const std::vector<Monster>& horde, const Monster* target);
 
 #endif
