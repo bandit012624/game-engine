@@ -1,44 +1,55 @@
 #include <iostream>
 
+// 1. CREATING OUR FIRST FUNCTION
+// This function takes our player's health as an input parameter and displays a clean banner
+void printStatusReport(int health) {
+    std::cout << "\n--------------------------------------" << std::endl;
+    std::cout << "💖 ENGINE HP MONITOR: " << health << " HP" << std::endl;
+    
+    // The function can even run its own internal decision logic!
+    if (health < 40) {
+        std::cout << "⚠️ WARNING: Player health is dangerously low! ⚠️" << std::endl;
+    }
+    
+    std::cout << "Enter Action (a = Attack, d = Defend, q = Quit): ";
+}
+
+// 2. THE CENTRAL ENGINE HUB
 int main() {
     int playerHealth = 100;
-    char userChoice = ' '; // Storing your keyboard input choice
+    char userChoice = ' ';
 
-    std::cout << "=== INTERACTIVE GAME ENGINE BOOTED ===" << std::endl;
-    std::cout << "Instructions: Type 'a' to Attack, 'd' to Defend, or 'q' to Quit." << std::endl;
+    std::cout << "=== MODULAR GAME ENGINE BOOTED ===" << std::endl;
 
-    // The game loop keeps running as long as you are alive AND you haven't typed 'q'
     while (playerHealth > 0 && userChoice != 'q') {
-        std::cout << "\n--------------------------------------" << std::endl;
-        std::cout << "Current Player Health: " << playerHealth << std::endl;
-        std::cout << "Enter Action (a/d/q): ";
         
-        // Pause the engine and wait for the user to type a key and press Enter
+        // CALLING OUR CUSTOM FUNCTION HERE
+        // We pass 'playerHealth' into the function so it knows what number to print
+        printStatusReport(playerHealth);
+        
         std::cin >> userChoice;
 
-        // Process your decision tree
         if (userChoice == 'a') {
-            std::cout << "[COMBAT] You charge forward! Enemy counter-attacks you for 20 damage!" << std::endl;
-            playerHealth -= 20;
+            std::cout << "[COMBAT] You slash! Enemy counter-attacks for 25 damage!" << std::endl;
+            playerHealth -= 25;
         } 
         else if (userChoice == 'd') {
-            std::cout << "[COMBAT] You raise your shield! Enemy attack is blocked safely." << std::endl;
+            std::cout << "[COMBAT] Shield raised! Safe from harm." << std::endl;
         } 
         else if (userChoice == 'q') {
-            std::cout << "[ENGINE] Shutdown command received." << std::endl;
+            std::cout << "[ENGINE] Exit flag captured." << std::endl;
         } 
         else {
-            std::cout << "[ERROR] Invalid input code. Enemy strikes you for 5 damage while you fumble!" << std::endl;
+            std::cout << "[ERROR] Wrong key! Mistake costs you 5 health." << std::endl;
             playerHealth -= 5;
         }
     }
 
-    // Post-Loop Cleanup Check
     std::cout << "\n======================================" << std::endl;
     if (playerHealth <= 0) {
         std::cout << "💀 playerHealth depleted. GAME OVER. 💀" << std::endl;
     } else {
-        std::cout << "👋 Engine safely exited. Thank you for playing! 👋" << std::endl;
+        std::cout << "👋 Engine safely shut down. Goodbye! 👋" << std::endl;
     }
 
     return 0;
