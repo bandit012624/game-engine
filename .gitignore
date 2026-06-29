@@ -9,3 +9,15 @@ engine.exe
 # Ignore Aider AI assistant tracking logs and cache databases
 .aider*
 .cache.db
+
+# Visual Studio
+.vs/
+out/
+build/
+*.user
+*.sln
+*.vcxproj
+*.filters
+*.proto
+CMakeSettings.json
+CMakeUserPresets.json
